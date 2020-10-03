@@ -20,9 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: winScene)
         window?.makeKeyAndVisible()
         
-        let dummyViewController = UIViewController()
-        dummyViewController.view.backgroundColor = .blue
-        let navController = UINavigationController(rootViewController: dummyViewController)
+        let companiesController = ViewController()
+        let navController = UINavigationController(rootViewController: companiesController)
         window?.rootViewController = navController
     }
 
