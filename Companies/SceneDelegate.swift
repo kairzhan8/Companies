@@ -8,6 +8,12 @@
 
 import UIKit
 
+class CustomNavigationController: UINavigationController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -20,8 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: winScene)
         window?.makeKeyAndVisible()
         
-        let companiesController = ViewController()
-        let navController = UINavigationController(rootViewController: companiesController)
+        let companiesController = CompaniesController()
+        let navController = CustomNavigationController(rootViewController: companiesController)
         window?.rootViewController = navController
     }
 
