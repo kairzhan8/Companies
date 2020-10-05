@@ -26,13 +26,7 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
 //    ]
     
     private func fetchCompanies() {
-        let persistantContainer = NSPersistentContainer(name: "CompaniesModels")
-        persistantContainer.loadPersistentStores { (storeDescriptoin, err) in
-            if let err = err {
-                fatalError("Loading of store failed: \(err)")
-            }
-        }
-        let context = persistantContainer.viewContext
+        let context = CoreDataManager.shared.persistantContainer.viewContext
         
         let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
         do {
@@ -40,6 +34,8 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
             
             companies.forEach { (company) in
                 print(company.name ?? "")
+                
+                self.companies = companies
             }
         } catch let fetchErr {
             print("Failed to fetch companies", fetchErr)
@@ -107,6 +103,34 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         cell.backgroundColor = .tealColor
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (_, _, _) in
+            let company = self.companies[indexPath.row]
+            
+            self.companies.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            let context = CoreDataManager.shared.persistantContainer.viewContext
+            
+            context.delete(company)
+            
+            do {
+                try context.save()
+            } catch let saveErr {
+                print("Error when deleteing company", saveErr)
+            }
+        }
+        
+        let editAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
+            print("Trying to edit")
+        }
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [editAction, deleteAction])
+        
+        return swipeActions
     }
 
 }
