@@ -10,6 +10,13 @@ import UIKit
 import CoreData
 
 class CompaniesController: UITableViewController, CreateCompanyControllerDelegate {
+    func didEditCompany(company: Company) {
+        guard let row = companies.firstIndex(of: company) else { return }
+        let indexPath = IndexPath(row: row, section: 0)
+        print(indexPath)
+        tableView.reloadRows(at: [indexPath], with: .middle)
+    }
+    
     func didAddCompany(company: Company) {
         companies.append(company)
         let newIndexPath = IndexPath(row: companies.count - 1, section: 0)
@@ -69,7 +76,7 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         print("company added..")
         
         let createCompanyController = CreateCompanyController()
-        
+        createCompanyController.delegate = self
         let navController = CustomNavigationController(rootViewController: createCompanyController)
         navController.modalPresentationStyle = .currentContext
         createCompanyController.delegate = self
@@ -123,14 +130,28 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
                 print("Error when deleteing company", saveErr)
             }
         }
-        
+    
         let editAction = UIContextualAction(style: .normal, title: "Edit") { (_, _, _) in
-            print("Trying to edit")
+            self.editHandlerFunction(indexPath: indexPath)
         }
         
-        let swipeActions = UISwipeActionsConfiguration(actions: [editAction, deleteAction])
+        deleteAction.backgroundColor = .lightRed
+        editAction.backgroundColor = .darkBlue
+        
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
         
         return swipeActions
+    }
+    
+    private func editHandlerFunction(indexPath: IndexPath) {
+        
+        print("Trying to edit")
+        
+        let editCompanyController = CreateCompanyController()
+        editCompanyController.company = companies[indexPath.row]
+        let navController = CustomNavigationController(rootViewController: editCompanyController)
+        navController.modalPresentationStyle = .currentContext
+        present(navController, animated: true, completion: nil)
     }
 
 }
