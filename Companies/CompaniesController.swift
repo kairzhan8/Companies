@@ -13,8 +13,8 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
     func didEditCompany(company: Company) {
         guard let row = companies.firstIndex(of: company) else { return }
         let indexPath = IndexPath(row: row, section: 0)
-        print(indexPath)
         tableView.reloadRows(at: [indexPath], with: .middle)
+        
     }
     
     func didAddCompany(company: Company) {
@@ -103,7 +103,18 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         
         let company = companies[indexPath.row]
         
-        cell.textLabel?.text = company.name
+        if let name = company.name, let founded = company.founded {
+            
+            let customDate = DateFormatter()
+            customDate.dateFormat = "MMM dd, yyyy"
+            
+            let foundedDateString = customDate.string(from: founded)
+            
+            cell.textLabel?.text = "\(name) - Founded: \(foundedDateString)"
+        } else {
+            cell.textLabel?.text = company.name
+        }
+        
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = .boldSystemFont(ofSize: 16)
         
@@ -149,6 +160,7 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         
         let editCompanyController = CreateCompanyController()
         editCompanyController.company = companies[indexPath.row]
+        editCompanyController.delegate = self
         let navController = CustomNavigationController(rootViewController: editCompanyController)
         navController.modalPresentationStyle = .currentContext
         present(navController, animated: true, completion: nil)
