@@ -54,6 +54,7 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         super.viewDidLoad()
         
         fetchCompanies()
+            
         
         view.backgroundColor = .white
         
@@ -68,8 +69,25 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+        
         setupNavigationStyle()
         
+    }
+    
+    @objc private func handleReset() {
+        print("Reset button was clicked")
+        let context = CoreDataManager.shared.persistantContainer.viewContext
+        
+        let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
+        
+        do {
+            try context.execute(batchDeleteRequest)
+            companies.removeAll()
+            tableView.reloadData()
+        } catch let deleteErr {
+            print("Failed to delete objects form Core Data", deleteErr)
+        }
     }
     
     @objc func handleAddCompany() {
@@ -117,6 +135,11 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = .boldSystemFont(ofSize: 16)
+        
+        cell.imageView?.image = #imageLiteral(resourceName: "select_photo_empty")
+        if let companyImage = company.imageData {
+            cell.imageView?.image = UIImage(data: companyImage)
+        }
         
         cell.backgroundColor = .tealColor
         
