@@ -65,7 +65,7 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         tableView.separatorColor = .white
         tableView.tableFooterView = UIView()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CompanyCell.self, forCellReuseIdentifier: "cell")
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
         
@@ -141,33 +141,16 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! CompanyCell
         
         let company = companies[indexPath.row]
-        
-        if let name = company.name, let founded = company.founded {
-            
-            let customDate = DateFormatter()
-            customDate.dateFormat = "MMM dd, yyyy"
-            
-            let foundedDateString = customDate.string(from: founded)
-            
-            cell.textLabel?.text = "\(name) - Founded: \(foundedDateString)"
-        } else {
-            cell.textLabel?.text = company.name
-        }
-        
-        cell.textLabel?.textColor = .white
-        cell.textLabel?.font = .boldSystemFont(ofSize: 16)
-        
-        cell.imageView?.image = #imageLiteral(resourceName: "select_photo_empty")
-        if let companyImage = company.imageData {
-            cell.imageView?.image = UIImage(data: companyImage)
-        }
-        
-        cell.backgroundColor = .tealColor
+        cell.company = company
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        60
     }
     
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

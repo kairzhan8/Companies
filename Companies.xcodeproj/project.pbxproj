@@ -18,6 +18,7 @@
 		555F22B72529156F00F418DF /* CreateCompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22B62529156F00F418DF /* CreateCompanyController.swift */; };
 		555F22BA252A4C6F00F418DF /* CompaniesModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 555F22B8252A4C6F00F418DF /* CompaniesModels.xcdatamodeld */; };
 		555F22BC252AFA8000F418DF /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22BB252AFA8000F418DF /* CoreDataManager.swift */; };
+		555F22BE25321A3A00F418DF /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22BD25321A3900F418DF /* CompanyCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		555F22B62529156F00F418DF /* CreateCompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyController.swift; sourceTree = "<group>"; };
 		555F22B9252A4C6F00F418DF /* CompaniesModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CompaniesModels.xcdatamodel; sourceTree = "<group>"; };
 		555F22BB252AFA8000F418DF /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		555F22BD25321A3900F418DF /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,9 +68,9 @@
 		5555AE1625285F8C00BF0A5C /* Companies */ = {
 			isa = PBXGroup;
 			children = (
+				555F22BF25321A4000F418DF /* Companies */,
 				5555AE1725285F8C00BF0A5C /* AppDelegate.swift */,
 				5555AE1925285F8C00BF0A5C /* SceneDelegate.swift */,
-				5555AE1B25285F8C00BF0A5C /* CompaniesController.swift */,
 				5555AE1D25285F8C00BF0A5C /* Main.storyboard */,
 				5555AE2025285F8E00BF0A5C /* Assets.xcassets */,
 				5555AE2225285F8E00BF0A5C /* LaunchScreen.storyboard */,
@@ -78,6 +80,15 @@
 				555F22B62529156F00F418DF /* CreateCompanyController.swift */,
 				555F22B8252A4C6F00F418DF /* CompaniesModels.xcdatamodeld */,
 				555F22BB252AFA8000F418DF /* CoreDataManager.swift */,
+			);
+			path = Companies;
+			sourceTree = "<group>";
+		};
+		555F22BF25321A4000F418DF /* Companies */ = {
+			isa = PBXGroup;
+			children = (
+				5555AE1B25285F8C00BF0A5C /* CompaniesController.swift */,
+				555F22BD25321A3900F418DF /* CompanyCell.swift */,
 			);
 			path = Companies;
 			sourceTree = "<group>";
@@ -157,6 +168,7 @@
 				5555AE1825285F8C00BF0A5C /* AppDelegate.swift in Sources */,
 				5555AE1A25285F8C00BF0A5C /* SceneDelegate.swift in Sources */,
 				5555AE2E2528A32700BF0A5C /* Company.swift in Sources */,
+				555F22BE25321A3A00F418DF /* CompanyCell.swift in Sources */,
 				5555AE2C25287ABF00BF0A5C /* UIColor + theme.swift in Sources */,
 				555F22BA252A4C6F00F418DF /* CompaniesModels.xcdatamodeld in Sources */,
 				555F22BC252AFA8000F418DF /* CoreDataManager.swift in Sources */,
