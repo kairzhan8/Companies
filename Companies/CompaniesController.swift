@@ -83,8 +83,18 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         
         do {
             try context.execute(batchDeleteRequest)
+            
+            var indexPathsForDelete = [IndexPath]()
+            
+            for (index, _ ) in companies.enumerated() {
+                let indexPath = IndexPath(row: index, section: 0)
+                indexPathsForDelete.append(indexPath)
+            }
+            
             companies.removeAll()
-            tableView.reloadData()
+            tableView.deleteRows(at: indexPathsForDelete, with: .left)
+//            companies.removeAll()
+//            tableView.reloadData()
         } catch let deleteErr {
             print("Failed to delete objects form Core Data", deleteErr)
         }
@@ -100,6 +110,20 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         createCompanyController.delegate = self
         
         present(navController, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.attributedText = NSAttributedString(string: "No companies available", attributes:
+        [.underlineStyle: NSUnderlineStyle.single.rawValue])
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return companies.count == 0 ? 150 : 0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
