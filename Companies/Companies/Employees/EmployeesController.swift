@@ -62,6 +62,7 @@ class EmployeesController: UITableViewController, CreateEmployeeControllerDelega
             return false
         })
         
+        
         allEmployees = [shortNameEmployees, longNameEmployees, reallyLongNameEmployees]
 //        self.employees = employees
 //        let context = CoreDataManager.shared.persistantContainer.viewContext
