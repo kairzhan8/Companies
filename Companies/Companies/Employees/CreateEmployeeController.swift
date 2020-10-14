@@ -64,9 +64,16 @@ class CreateEmployeeController: UIViewController {
         guard let company = company  else { return }
         guard let birthday = birthdayTextField.text else { return }
         
+        if birthday.isEmpty {
+            showError(title: "Empty birthday", message: "Enter a employee birthday")
+        }
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
-        guard let birthdayDate = dateFormatter.date(from: birthday) else { return }
+        guard let birthdayDate = dateFormatter.date(from: birthday) else {
+            showError(title: "Wrong Format", message: "Enter birthday date with correct format")
+            return
+        }
         let tuple = CoreDataManager.shared.createEmployee(employeeName: employeeName, birthday: birthdayDate, company: company)
         if let error = tuple.1 {
             print(error)
@@ -75,6 +82,13 @@ class CreateEmployeeController: UIViewController {
                 self.delegate?.didAddEmployee(employee: tuple.0!)
             }
         }
+    }
+    
+    private func showError(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+        return
     }
     
     private func setupUI() {
