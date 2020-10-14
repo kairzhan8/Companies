@@ -29,7 +29,7 @@ class CompaniesController: UITableViewController {
         
         tableView.register(CompanyCell.self, forCellReuseIdentifier: "cell")
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
+        setupPlusButtonInNavBar(selector: #selector(handleAddCompany))
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
         
@@ -67,7 +67,6 @@ class CompaniesController: UITableViewController {
         createCompanyController.delegate = self
         let navController = CustomNavigationController(rootViewController: createCompanyController)
         navController.modalPresentationStyle = .currentContext
-        createCompanyController.delegate = self
         
         present(navController, animated: true)
     }
