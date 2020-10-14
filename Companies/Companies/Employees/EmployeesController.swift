@@ -28,16 +28,18 @@ class EmployeesController: UITableViewController, CreateEmployeeControllerDelega
     
     private func fetchEmployees() {
         print("Trying to fetch employees from core data")
-        let context = CoreDataManager.shared.persistantContainer.viewContext
-        
-        let fetch = NSFetchRequest<Employee>(entityName: "Employee")
-        
-        do {
-            let employees = try context.fetch(fetch)
-            self.employees = employees
-        } catch let err {
-            print("Failed to fetch employees ", err)
-        }
+        guard let employees = company?.employees?.allObjects as? [Employee] else { return }
+        self.employees = employees
+//        let context = CoreDataManager.shared.persistantContainer.viewContext
+//
+//        let fetch = NSFetchRequest<Employee>(entityName: "Employee")
+//
+//        do {
+//            let employees = try context.fetch(fetch)
+//            self.employees = employees
+//        } catch let err {
+//            print("Failed to fetch employees ", err)
+//        }
     }
     
     let cellID = "cellllllid"
@@ -80,6 +82,7 @@ class EmployeesController: UITableViewController, CreateEmployeeControllerDelega
         print("Trying to to add new employee")
         let createEmployeeController = CreateEmployeeController()
         createEmployeeController.delegate = self
+        createEmployeeController.company = company
         let navController = CustomNavigationController(rootViewController: createEmployeeController)
         navController.modalPresentationStyle = .currentContext
         present(navController, animated: true, completion: nil)
