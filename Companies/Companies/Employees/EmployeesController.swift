@@ -20,13 +20,15 @@ class IndendedLabel: UILabel {
 class EmployeesController: UITableViewController, CreateEmployeeControllerDelegate {
     
     func didAddEmployee(employee: Employee) {
-        fetchEmployees()
-        tableView.reloadData()
+        guard let section = employeeTypes.firstIndex(of: employee.type!) else { return }
+        let row = allEmployees[section].count
+        let insertionIndexPath = IndexPath(row: row, section: section)
+        allEmployees[section].append(employee)
+        tableView.insertRows(at: [insertionIndexPath], with: .fade)
     }
     
     
     var company: Company?
-    var employees: [Employee] = []
     var allEmployees = [[Employee]]()
     
     var employeeTypes = [
