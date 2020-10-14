@@ -20,18 +20,20 @@ class IndendedLabel: UILabel {
 class EmployeesController: UITableViewController, CreateEmployeeControllerDelegate {
     
     func didAddEmployee(employee: Employee) {
-        employees.append(employee)
+        fetchEmployees()
         tableView.reloadData()
     }
     
     
     var company: Company?
     var employees: [Employee] = []
-    
-    var shortNameEmployees: [Employee] = []
-    var longNameEmployees = [Employee]()
-    var reallyLongNameEmployees = [Employee]()
     var allEmployees = [[Employee]]()
+    
+    var employeeTypes = [
+        EmployeeType.Executive.rawValue,
+        EmployeeType.SeniorManagement.rawValue,
+        EmployeeType.Staff.rawValue
+    ]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,39 +44,13 @@ class EmployeesController: UITableViewController, CreateEmployeeControllerDelega
     private func fetchEmployees() {
         print("Trying to fetch employees from core data")
         guard let employees = company?.employees?.allObjects as? [Employee] else { return }
-        shortNameEmployees = employees.filter({ (employee) -> Bool in
-            if let count = employee.name?.count {
-                return count < 5
-            }
-            return false
-        })
-        longNameEmployees = employees.filter({ (employee) -> Bool in
-            if let count = employee.name?.count {
-                return count <= 8 && count >= 5
-            }
-            return false
-        })
+        allEmployees = []
         
-        reallyLongNameEmployees = employees.filter({ (employee) -> Bool in
-            if let count = employee.name?.count {
-                return count > 8
-            }
-            return false
-        })
-        
-        
-        allEmployees = [shortNameEmployees, longNameEmployees, reallyLongNameEmployees]
-//        self.employees = employees
-//        let context = CoreDataManager.shared.persistantContainer.viewContext
-//
-//        let fetch = NSFetchRequest<Employee>(entityName: "Employee")
-//
-//        do {
-//            let employees = try context.fetch(fetch)
-//            self.employees = employees
-//        } catch let err {
-//            print("Failed to fetch employees ", err)
-//        }
+        employeeTypes.forEach { (employeeType) in
+            allEmployees.append(
+                employees.filter{$0.type == employeeType}
+            )
+        }
     }
     
     let cellID = "cellllllid"
@@ -101,13 +77,7 @@ class EmployeesController: UITableViewController, CreateEmployeeControllerDelega
         label.backgroundColor = .lightBlue
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .darkBlue
-        if section == 0 {
-            label.text = "Short name"
-        } else if section == 1 {
-            label.text = "Long name"
-        } else {
-            label.text = "Really long name"
-        }
+        label.text = employeeTypes[section]
         return label
     }
     

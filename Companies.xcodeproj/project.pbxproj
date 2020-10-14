@@ -24,6 +24,7 @@
 		555F22C525347D0D00F418DF /* EmployeesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22C425347D0D00F418DF /* EmployeesController.swift */; };
 		555F22C825347F1400F418DF /* UIViewController + Helpers .swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22C725347F1400F418DF /* UIViewController + Helpers .swift */; };
 		555F22CA2534863500F418DF /* CreateEmployeeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22C92534863500F418DF /* CreateEmployeeController.swift */; };
+		555F22CD25376FFD00F418DF /* EmployeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22CC25376FFD00F418DF /* EmployeeType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		555F22C425347D0D00F418DF /* EmployeesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesController.swift; sourceTree = "<group>"; };
 		555F22C725347F1400F418DF /* UIViewController + Helpers .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Helpers .swift"; sourceTree = "<group>"; };
 		555F22C92534863500F418DF /* CreateEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmployeeController.swift; sourceTree = "<group>"; };
+		555F22CC25376FFD00F418DF /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 			children = (
 				555F22C425347D0D00F418DF /* EmployeesController.swift */,
 				555F22C92534863500F418DF /* CreateEmployeeController.swift */,
+				555F22CC25376FFD00F418DF /* EmployeeType.swift */,
 			);
 			path = Employees;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				555F22CA2534863500F418DF /* CreateEmployeeController.swift in Sources */,
 				555F22C125322FBF00F418DF /* CompaniesController + CreateCompany.swift in Sources */,
 				5555AE1825285F8C00BF0A5C /* AppDelegate.swift in Sources */,
+				555F22CD25376FFD00F418DF /* EmployeeType.swift in Sources */,
 				5555AE1A25285F8C00BF0A5C /* SceneDelegate.swift in Sources */,
 				5555AE2E2528A32700BF0A5C /* Company.swift in Sources */,
 				555F22BE25321A3A00F418DF /* CompanyCell.swift in Sources */,

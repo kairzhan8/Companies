@@ -46,7 +46,11 @@ class CreateEmployeeController: UIViewController {
     }()
     
     let employeeTypeControlSegmentation: UISegmentedControl = {
-        let types = ["Executive", "Senior management", "Staff"]
+        let types = [
+            EmployeeType.Executive.rawValue,
+            EmployeeType.SeniorManagement.rawValue,
+            EmployeeType.Staff.rawValue
+        ]
         let sc = UISegmentedControl(items: types)
         sc.translatesAutoresizingMaskIntoConstraints = false
         sc.selectedSegmentIndex = 0
