@@ -16,6 +16,8 @@ class CompaniesController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Service.shared.fetchCompanies()
+        
         self.companies = CoreDataManager.shared.fetchCompanies()
             
         

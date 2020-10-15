@@ -25,6 +25,7 @@
 		555F22C825347F1400F418DF /* UIViewController + Helpers .swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22C725347F1400F418DF /* UIViewController + Helpers .swift */; };
 		555F22CA2534863500F418DF /* CreateEmployeeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22C92534863500F418DF /* CreateEmployeeController.swift */; };
 		555F22CD25376FFD00F418DF /* EmployeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22CC25376FFD00F418DF /* EmployeeType.swift */; };
+		555F22CF2538ACFE00F418DF /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555F22CE2538ACFE00F418DF /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		555F22C725347F1400F418DF /* UIViewController + Helpers .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Helpers .swift"; sourceTree = "<group>"; };
 		555F22C92534863500F418DF /* CreateEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmployeeController.swift; sourceTree = "<group>"; };
 		555F22CC25376FFD00F418DF /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
+		555F22CE2538ACFE00F418DF /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				555F22C025322FBF00F418DF /* CompaniesController + CreateCompany.swift */,
 				555F22C22532302800F418DF /* CompaniesController + UITableView.swift */,
 				555F22B62529156F00F418DF /* CreateCompanyController.swift */,
+				555F22CE2538ACFE00F418DF /* Service.swift */,
 			);
 			path = Companies;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				5555AE2E2528A32700BF0A5C /* Company.swift in Sources */,
 				555F22BE25321A3A00F418DF /* CompanyCell.swift in Sources */,
 				5555AE2C25287ABF00BF0A5C /* UIColor + theme.swift in Sources */,
+				555F22CF2538ACFE00F418DF /* Service.swift in Sources */,
 				555F22C825347F1400F418DF /* UIViewController + Helpers .swift in Sources */,
 				555F22C525347D0D00F418DF /* EmployeesController.swift in Sources */,
 				555F22BA252A4C6F00F418DF /* CompaniesModels.xcdatamodeld in Sources */,
