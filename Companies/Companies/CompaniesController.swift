@@ -42,13 +42,13 @@ class CompaniesController: UITableViewController {
     
     @objc private func handleDoWork() {
         print("Trying to do...")
-        DispatchQueue.global(qos: .background).async {
-            (0...100).forEach { (value) in
-                let context = CoreDataManager.shared.persistantContainer.viewContext
-                let company = Company(context: context)
+        CoreDataManager.shared.persistantContainer.performBackgroundTask { (backgroundContext) in
+            (0...1000).forEach { (value) in
+                print(value)
+                let company = Company(context: backgroundContext)
                 company.name = String(value)
                 do {
-                    try context.save()
+                    try backgroundContext.save()
                 } catch let err {
                     print("Failed to save :", err)
                 }
