@@ -33,11 +33,40 @@ class CompaniesController: UITableViewController {
         
         navigationItem.leftBarButtonItems = [
             UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset)),
-            UIBarButtonItem(title: "Do work", style: .plain, target: self, action: #selector(handleDoWork))
+            UIBarButtonItem(title: "Do Updates", style: .plain, target: self, action: #selector(handleDoUpdates))
         ]
         
         setupNavigationStyle()
         
+    }
+    
+    @objc private func handleDoUpdates() {
+        print("Trying to updated works")
+        CoreDataManager.shared.persistantContainer.performBackgroundTask { (backgroundContext) in
+            let request: NSFetchRequest<Company> = Company.fetchRequest()
+            do {
+                let companies = try backgroundContext.fetch(request)
+                companies.forEach { (company) in
+                    print(company.name ?? "")
+                    company.name = "B: \(company.name ?? "")"
+                }
+                do {
+                    try backgroundContext.save()
+                    DispatchQueue.main.async {
+                        CoreDataManager.shared.persistantContainer.viewContext.reset()
+                        self.companies = CoreDataManager.shared.fetchCompanies()
+                        self.tableView.reloadData()
+                    }
+                } catch let err {
+                    print("Failed ot save updates in background", err)
+                }
+            } catch let err {
+                print("Failed to fetch in background", err)
+            }
+            
+            
+            
+        }
     }
     
     @objc private func handleDoWork() {
