@@ -31,10 +31,29 @@ class CompaniesController: UITableViewController {
         
         setupPlusButtonInNavBar(selector: #selector(handleAddCompany))
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+        navigationItem.leftBarButtonItems = [
+            UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset)),
+            UIBarButtonItem(title: "Do work", style: .plain, target: self, action: #selector(handleDoWork))
+        ]
         
         setupNavigationStyle()
         
+    }
+    
+    @objc private func handleDoWork() {
+        print("Trying to do...")
+        DispatchQueue.global(qos: .background).async {
+            (0...100).forEach { (value) in
+                let context = CoreDataManager.shared.persistantContainer.viewContext
+                let company = Company(context: context)
+                company.name = String(value)
+                do {
+                    try context.save()
+                } catch let err {
+                    print("Failed to save :", err)
+                }
+            }
+        }
     }
     
     @objc private func handleReset() {

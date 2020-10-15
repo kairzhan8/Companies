@@ -217,6 +217,7 @@ extension UIViewController {
         
         navigationController?.navigationBar.tintColor = .white
         navigationController!.view.backgroundColor = .lightRed
+        navigationController?.navigationBar.barTintColor = .lightRed
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
