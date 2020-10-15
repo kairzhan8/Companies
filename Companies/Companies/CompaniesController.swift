@@ -33,11 +33,47 @@ class CompaniesController: UITableViewController {
         
         navigationItem.leftBarButtonItems = [
             UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset)),
-            UIBarButtonItem(title: "Do Updates", style: .plain, target: self, action: #selector(handleDoUpdates))
+            UIBarButtonItem(title: "Nested Updates", style: .plain, target: self, action: #selector(handleDoNestedUpdates))
         ]
         
         setupNavigationStyle()
         
+    }
+    
+    @objc private func handleDoNestedUpdates() {
+        print("Trying to do nested updates")
+        DispatchQueue.global(qos: .background).async {
+            let privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+            privateContext.parent = CoreDataManager.shared.persistantContainer.viewContext
+            
+            let request: NSFetchRequest<Company> = Company.fetchRequest()
+            request.fetchLimit = 1
+            do {
+                let companies = try privateContext.fetch(request)
+                companies.forEach { (company) in
+                    print(company.name ?? "")
+                    company.name = "Kair \(company.name ?? "")"
+                    do {
+                        try privateContext.save()
+                        DispatchQueue.main.async {
+                            do {
+                                let context = CoreDataManager.shared.persistantContainer.viewContext
+                                if context.hasChanges {
+                                    try context.save()
+                                }
+                            } catch let err {
+                                print("Failed to save main context", err)
+                            }
+                            self.tableView.reloadData()
+                        }
+                    } catch let err {
+                        print("Failed to save in privat context", err)
+                    }
+                }
+            } catch let err {
+                print("Failed to fetch from private context", err)
+            }
+        }
     }
     
     @objc private func handleDoUpdates() {
