@@ -16,10 +16,7 @@ class CompaniesController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Service.shared.fetchCompanies()
-        
         self.companies = CoreDataManager.shared.fetchCompanies()
-            
         
         view.backgroundColor = .white
         
@@ -40,6 +37,15 @@ class CompaniesController: UITableViewController {
         
         setupNavigationStyle()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        refreshControl.tintColor = .white
+        self.refreshControl = refreshControl
+    }
+    
+    @objc private func handleRefresh() {
+        Service.shared.fetchCompanies()
+        refreshControl?.endRefreshing()
     }
     
     @objc private func handleDoNestedUpdates() {
