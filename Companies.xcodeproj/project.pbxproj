@@ -50,6 +50,7 @@
 		555F22C92534863500F418DF /* CreateEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmployeeController.swift; sourceTree = "<group>"; };
 		555F22CC25376FFD00F418DF /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
 		555F22CE2538ACFE00F418DF /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		555F22D0253AFF0100F418DF /* CompaniesModels_v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CompaniesModels_v1.1.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,9 +420,10 @@
 		555F22B8252A4C6F00F418DF /* CompaniesModels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				555F22D0253AFF0100F418DF /* CompaniesModels_v1.1.xcdatamodel */,
 				555F22B9252A4C6F00F418DF /* CompaniesModels.xcdatamodel */,
 			);
-			currentVersion = 555F22B9252A4C6F00F418DF /* CompaniesModels.xcdatamodel */;
+			currentVersion = 555F22D0253AFF0100F418DF /* CompaniesModels_v1.1.xcdatamodel */;
 			path = CompaniesModels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
