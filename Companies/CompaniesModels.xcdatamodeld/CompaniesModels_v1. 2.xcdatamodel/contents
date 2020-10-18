@@ -4,7 +4,6 @@
         <attribute name="founded" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <attribute name="numberOfEmloyees" attributeType="Integer 16" defaultValueString="100" usesScalarValueType="YES"/>
         <attribute name="officialName" attributeType="String" defaultValueString="No officaial name"/>
         <relationship name="employees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Employee" inverseName="company" inverseEntity="Employee"/>
     </entity>
@@ -27,7 +26,7 @@
         <relationship name="employee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Employee" inverseName="employeeInformation" inverseEntity="Employee"/>
     </entity>
     <elements>
-        <element name="Company" positionX="-120.546875" positionY="-66.1015625" width="128" height="133"/>
+        <element name="Company" positionX="-120.546875" positionY="-66.1015625" width="128" height="118"/>
         <element name="Employee" positionX="277.390625" positionY="-97.765625" width="128" height="118"/>
         <element name="EmployeeAddress" positionX="224.04296875" positionY="230.52734375" width="128" height="103"/>
         <element name="EmployeeInformation" positionX="-104.1875" positionY="149.37109375" width="128" height="88"/>
